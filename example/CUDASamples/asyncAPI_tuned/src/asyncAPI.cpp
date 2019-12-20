@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
     checkCudaErrors(cudaMemset(d_a, 255, nbytes));
 
     // set kernel launch configuration
-    dim3 threads = dim3(512, 1);
+    dim3 threads = dim3(16, 1);
     dim3 blocks  = dim3(n / threads.x, 1);
 
     // create cuda event handles

@@ -131,7 +131,7 @@ main(int argc, char *argv[])
     }
 
     // Launch the Vector Add CUDA Kernel
-    int threadsPerBlock = 256;
+    int threadsPerBlock = 16;
     int blocksPerGrid =(numElements + threadsPerBlock - 1) / threadsPerBlock;
     printf("CUDA kernel launch with %d blocks of %d threads\n", blocksPerGrid, threadsPerBlock);
     CUPLA_KERNEL_OPTI(vectorAdd)(blocksPerGrid, threadsPerBlock,0,0)(d_A, d_B, d_C, numElements);
@@ -264,7 +264,7 @@ benchmarkTest(int first, int last, int stepSize)
         cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice);
         cudaMemcpy(d_B, h_B, size, cudaMemcpyHostToDevice);
 
-        int threadsPerBlock=1024;
+        int threadsPerBlock=16;
         int blocksPerGrid= (numElements+threadsPerBlock-1)/threadsPerBlock;
 
         //Run Kernel

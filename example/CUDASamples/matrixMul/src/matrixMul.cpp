@@ -212,9 +212,9 @@ int matrixMultiply(int argc, char **argv, int block_size, dim3 &dimsA, dim3 &dim
     printf("Computing result using CUDA Kernel...\n");
 
     // Performs warmup operation using matrixMul CUDA kernel
-    if (block_size == 16)
+    if (block_size == 4)
     {
-        CUPLA_KERNEL(matrixMulCUDA<16>)( grid, threads )(d_C, d_A, d_B, dimsA.x, dimsB.x);
+        CUPLA_KERNEL(matrixMulCUDA<4>)( grid, threads )(d_C, d_A, d_B, dimsA.x, dimsB.x);
     }
     else
     {
@@ -258,9 +258,9 @@ int matrixMultiply(int argc, char **argv, int block_size, dim3 &dimsA, dim3 &dim
 
     for (int j = 0; j < nIter; j++)
     {
-        if (block_size == 16)
+        if (block_size == 4)
         {
-            CUPLA_KERNEL(matrixMulCUDA<16>)( grid, threads )(d_C, d_A, d_B, dimsA.x, dimsB.x);
+            CUPLA_KERNEL(matrixMulCUDA<4>)( grid, threads )(d_C, d_A, d_B, dimsA.x, dimsB.x);
         }
         else
         {
@@ -421,7 +421,7 @@ int main(int argc, char **argv)
  */
 
     // Use a larger block size for Fermi and above
-    int block_size = 16; // (deviceProp.major < 2) ? 16 : 32;
+    int block_size = 4; // (deviceProp.major < 2) ? 16 : 32;
 
     dim3 dimsA(5*2*block_size, 5*2*block_size, 1);
     dim3 dimsB(5*4*block_size, 5*2*block_size, 1);

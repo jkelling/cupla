@@ -58,6 +58,10 @@
 #           define CUPLA_ACCELERATOR_NAMESPACE cupla_omp4_omp4_async
 #       endif
 
+#       ifdef ALPAKA_ACC_ANY_BT_OACC_ENABLED
+#           define CUPLA_ACCELERATOR_NAMESPACE cupla_oacc_oacc_async
+#       endif
+
 #   endif // mixed accelerator usage
 
 #else // CUPLA_STREAM_ASYNC_ENABLED
@@ -93,6 +97,10 @@
 
 #       ifdef ALPAKA_ACC_CPU_BT_OMP4_ENABLED
 #           define CUPLA_ACCELERATOR_NAMESPACE cupla_omp4_omp4_sync
+#       endif
+
+#       ifdef ALPAKA_ACC_ANY_BT_OACC_ENABLED
+#           define CUPLA_ACCELERATOR_NAMESPACE cupla_oacc_oacc_sync
 #       endif
 
 #   endif // mixed accelerator usage

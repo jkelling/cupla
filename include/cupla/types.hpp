@@ -143,6 +143,19 @@ inline namespace CUPLA_ACCELERATOR_NAMESPACE
     >;
 #endif
 
+#ifdef ALPAKA_ACC_ANY_BT_OACC_ENABLED
+    using AccDev = ::alpaka::dev::DevOacc;
+#   if (CUPLA_STREAM_ASYNC_ENABLED == 1)
+        using AccStream = ::alpaka::queue::QueueOaccNonBlocking;
+#   else
+        using AccStream = ::alpaka::queue::QueueOaccBlocking;
+#   endif
+    using Acc = ::alpaka::acc::AccOacc<
+        KernelDim,
+        IdxType
+    >;
+#endif
+
 #ifdef ALPAKA_ACC_GPU_CUDA_ENABLED
     using AccDev = ::alpaka::dev::DevCudaRt;
 #   if (CUPLA_STREAM_ASYNC_ENABLED == 1)

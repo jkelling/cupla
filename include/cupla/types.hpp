@@ -64,7 +64,7 @@ inline namespace CUPLA_ACCELERATOR_NAMESPACE
     defined(ALPAKA_ACC_CPU_B_OMP2_T_SEQ_ENABLED) ||                            \
     defined(ALPAKA_ACC_CPU_B_SEQ_T_SEQ_ENABLED) ||                             \
     defined(ALPAKA_ACC_CPU_B_TBB_T_SEQ_ENABLED) ||                             \
-    defined(ALPAKA_ACC_CPU_BT_OMP4_ENABLED)
+    defined(ALPAKA_ACC_ANY_BT_OMP5_ENABLED)
 
     using AccDev = ::alpaka::dev::DevCpu;
 #   if (CUPLA_STREAM_ASYNC_ENABLED == 1)
@@ -129,8 +129,8 @@ inline namespace CUPLA_ACCELERATOR_NAMESPACE
     #endif
 #endif
 
-#ifdef ALPAKA_ACC_CPU_BT_OMP4_ENABLED
-    using Acc = ::alpaka::acc::AccCpuOmp4<
+#ifdef ALPAKA_ACC_ANY_BT_OMP5_ENABLED
+    using Acc = ::alpaka::acc::AccOmp5<
         KernelDim,
         IdxType
     >;

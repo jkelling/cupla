@@ -39,5 +39,3 @@
 #   include "cupla/../../src/memory.cpp"
 #   include "cupla/../../src/stream.cpp"
 #endif
-
-#include "cuda_to_cupla.hpp"

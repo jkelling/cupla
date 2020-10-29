@@ -127,7 +127,7 @@
  *
  * Value is 1 if device path is compiled else 0
  */
-#if defined(__CUDA_ARCH__) || ( defined(__HIP_DEVICE_COMPILE__) && __HIP_DEVICE_COMPILE__== 1 && defined(__HIP__) )
+#if (defined(SPEC_CUDA) && defined(__CUDA_ARCH__)) || (defined(SPEC_HIP) && defined(__HIP_DEVICE_COMPILE__) && __HIP_DEVICE_COMPILE__== 1 && defined(__HIP__) )
     #define CUPLA_DEVICE_COMPILE 1
 #else
     #define CUPLA_DEVICE_COMPILE 0
